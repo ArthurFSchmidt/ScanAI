@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name":"ScanAI",
+    "version": "1.0",
+    "description":"Detecta textos gerados por inteligência artificial em uma página.",
+    "author": "Arthur Ferreira Schmidt",
+    "background": {
+        "service_worker": "checkAi.js"
+    },
+
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_icon": {
+            "24": "imagens/icon.png"
+        }
+    },
+
+    "permissions": [
+        "contextMenus", "tabs", "scripting"
+    ],
+
+    "host_permissions": ["<all_urls>"]
+
+}

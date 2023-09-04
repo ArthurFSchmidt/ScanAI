@@ -1,0 +1,21 @@
+h1{
+    text-align: center;
+    font-family: Rubik;
+    font-size: 40px;
+    color: #688bff;
+}
+body{
+    background-color: #f7f7ff;
+    
+}
+h4{
+    margin-left: 22px;
+    color: #688bff;
+    font-family: Rubik;
+}
+#info{
+    font-size: 12px;
+    text-align: center;
+    color: #0b0f1b;
+    font-family: Rubik;
+}
