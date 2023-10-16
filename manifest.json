@@ -1,18 +1,17 @@
 {
     "manifest_version": 3,
-    "name":"ScanAI",
+    "name": "ScanAI",
     "version": "1.0",
-    "description":"Detecta textos gerados por inteligência artificial em uma página.",
+    "description": "Extensão para detectar textos gerados por inteligência artificial em uma página.",
     "author": "Arthur Ferreira Schmidt",
+
     "background": {
         "service_worker": "checkAi.js"
     },
 
     "action": {
         "default_popup": "popup/index.html",
-        "default_icon": {
-            "24": "imagens/icon.png"
-        }
+        "default_icon": { "24": "imagens/icon.png" }
     },
 
     "permissions": [
