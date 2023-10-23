@@ -15,9 +15,7 @@
     },
 
     "permissions": [
-        "contextMenus", "tabs", "scripting"
-    ],
-
-    "host_permissions": ["<all_urls>"]
+        "contextMenus", "tabs", "scripting", "activeTab"
+    ]
 
 }

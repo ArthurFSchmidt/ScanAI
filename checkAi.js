@@ -1,4 +1,5 @@
 console.log("checkai iniciado");
+let isContentScriptActive = false;
 
 // Cria o objeto que define o item para o contextMenu.
 let contextMenuItem = {
@@ -17,27 +18,25 @@ chrome.contextMenus.onClicked.addListener(aiChecker);
 // Tem como objetivo se conectar com a API para fazer a verificação,
 // após isso, cria o content script na página e manda as informações como mensagem.
 async function aiChecker(clickData) {
-
-  // Faz query para encontrar a página ativa.
-  const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
   let resp = "Não é AI!";
-  console.log(clickData);
+
+  if(!isContentScriptActive){
+    // Faz query para encontrar a página ativa.
+    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+    // Cria o content script na página ativa.
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ["scripts/content.js"]
+    });
+    isContentScriptActive = true;
+  }
 
 
-
-  // Cria o content script na página ativa.
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ["scripts/content.js"]
-  });
-
-  // Espera a mensagem do content script e retorna o texto verificado e o resultado.
-  chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-      if (request.message === "getScanResult"){
-        sendResponse({ message: { 'text': clickData.selectionText, 'result': resp } });
-      }
-    }
-  );
+  (async () => {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    const response = await chrome.tabs.sendMessage(tab.id, {greeting: "getScanResult", text: clickData.selectionText, result: resp});
+    // do something with response here, not outside the function
+    console.log(response);
+  })();
 
 }
