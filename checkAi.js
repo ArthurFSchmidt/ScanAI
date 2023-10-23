@@ -34,8 +34,7 @@ async function aiChecker(clickData) {
 
   (async () => {
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    const response = await chrome.tabs.sendMessage(tab.id, {greeting: "getScanResult", text: clickData.selectionText, result: resp});
-    // do something with response here, not outside the function
+    const response = await chrome.tabs.sendMessage(tab.id, {greeting: "scanResult", text: clickData.selectionText, result: resp});
     console.log(response);
   })();
 

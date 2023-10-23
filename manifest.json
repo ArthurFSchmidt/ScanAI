@@ -15,7 +15,7 @@
     },
 
     "permissions": [
-        "contextMenus", "tabs", "scripting", "activeTab"
+        "contextMenus", "scripting", "activeTab"
     ]
 
 }

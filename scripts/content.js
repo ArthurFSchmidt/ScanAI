@@ -3,14 +3,16 @@ let isPopupOpen = false;
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    if (request.greeting === "getScanResult")
+    if (request.greeting === "scanResult"){
+      sendResponse('ok');
+
       results.result = request.result;
-    results.text = request.text;
+      results.text = request.text;
 
-    if (isPopupOpen) fecharPopup()
+      if (isPopupOpen) fecharPopup()
 
-    criaPopup();
-
+      criaPopup();
+    }
   }
 );
 
@@ -59,6 +61,7 @@ function criaPopup() {
   btn.innerHTML = "Fechar";
   div.appendChild(btn);
   btn.onclick = fecharPopup;
+  btn.style = "border: 0; padding: 5px; cursor: pointer;"
 
   // Adiciona a div ao shadowRoot
   shadowRoot.appendChild(div);
