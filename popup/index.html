@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&family=Roboto">
-    <title>ScanAI</title>
-</head>
-<body style="width: 300px; height: 180px;">
-    <h1>ScanAI</h1>
-    <hr>
-    <h4>Como usar</h4>
-    <p id="info">Selecione um texto, clique com o botão direito e selecione "Procurar por conteúdo IA".</p>
-    <hr>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&family=Roboto">
+        <title>ScanAI</title>
+    </head>
+    <body>
+        <h1>ScanAI</h1>
+        <hr>
+        <h4>Como usar</h4>
+        <p id="info">Selecione um texto, clique com o botão direito e selecione "Procurar por conteúdo IA".</p>
+        <hr>
+        <form>
+            <label for="texto">Insira o texto:</label>
+            <textarea id="texto" spellcheck="false" required></textarea>
+            <input type="button" value="Verificar" id="btn-enviar">
+        </form>
+        <h4 class="display-inline">Resultado: </h4>
+        <p id="resposta" class="display-inline"></p>
+    </body>
+    <script src="./script.js"></script>
 </html>

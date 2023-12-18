@@ -18,9 +18,37 @@ chrome.contextMenus.onClicked.addListener(aiChecker);
 // Tem como objetivo se conectar com a API para fazer a verificação,
 // após isso, cria o content script na página e manda as informações como mensagem.
 async function aiChecker(clickData) {
-  let resp = "Não é AI!";
 
-  if(!isContentScriptActive){
+  criarContentScript();
+
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'Content-type': 'application/json',
+      'x-api-key': '8JacecGY4964lv2d84Ek595cUQ4545sk4754Xu1b65sS3a43Pidbc62k644e4rc1c4Kmc42eTM34f4FB4727s4bcefLQa6ec'
+    },
+    body: JSON.stringify({
+      language: 'auto',
+      text: clickData.selectionText
+    })
+  };
+
+  fetch('https://api.smodin.io/v1/ai-detection/single', options)
+    .then(response => response.json())
+    .then(resp => { 
+
+    (async () => {
+      const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+      const response = await chrome.tabs.sendMessage(tab.id, { greeting: "scanResult", text: clickData.selectionText, result: resp.aiGeneratedProbability });
+      console.log(response);
+    })();
+});
+
+}
+
+async function criarContentScript() {
+  
     // Faz query para encontrar a página ativa.
     const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
     // Cria o content script na página ativa.
@@ -29,13 +57,5 @@ async function aiChecker(clickData) {
       files: ["scripts/content.js"]
     });
     isContentScriptActive = true;
-  }
-
-
-  (async () => {
-    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    const response = await chrome.tabs.sendMessage(tab.id, {greeting: "scanResult", text: clickData.selectionText, result: resp});
-    console.log(response);
-  })();
-
+  
 }

@@ -3,13 +3,13 @@ let isPopupOpen = false;
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    if (request.greeting === "scanResult"){
+    if (request.greeting === "scanResult") {
       sendResponse('ok');
 
-      results.result = request.result;
+      results.result = Math.ceil(request.result)+"% de IA";
       results.text = request.text;
 
-      if (isPopupOpen) fecharPopup()
+      if (isPopupOpen) fecharPopup();
 
       criaPopup();
     }
@@ -30,7 +30,7 @@ function criaPopup() {
   // Criação da div verdadeira que estará visível na página.
   div = document.createElement("div");
   div.classList.add("scanAI-popup-div");
-  div.style = "width:300px; min-height:150px; background-color: #f7f7ff; border: 1px solid #688bff; position:fixed; z-index: 100000; right: 10px; top: 10px;";
+  div.style = "width:300px; min-height:150px; background-color: #f7f7ff; border: 1px solid #688bff; position:fixed; z-index: 100000; right: 10px; top: 10px; overflow: scroll; max-height: 90vh;";
 
   let h1 = document.createElement("h1");
   h1.style = "text-align: center;";
@@ -61,7 +61,7 @@ function criaPopup() {
   btn.innerHTML = "Fechar";
   div.appendChild(btn);
   btn.onclick = fecharPopup;
-  btn.style = "border: 0; padding: 5px; cursor: pointer;"
+  btn.style = "border: 0; padding: 5px; cursor: pointer;";
 
   // Adiciona a div ao shadowRoot
   shadowRoot.appendChild(div);
