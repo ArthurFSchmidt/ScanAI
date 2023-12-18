@@ -28,7 +28,7 @@ function verificarTexto() {
         .then(response => response.json())
         .then(resp => { 
             resposta = document.querySelector("#resposta");
-            resposta.innerHTML = Math.ceil(resp.aiGeneratedProbability) + "%.";
+            resposta.innerHTML = Math.ceil(resp.aiGeneratedProbability) + "% de IA.";
     });
 
 }

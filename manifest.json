@@ -15,9 +15,9 @@
     },
 
     "permissions": [
-        "contextMenus", "scripting", "activeTab"
+        "contextMenus", "scripting", "activeTab", "tabs"
     ],
 
-    "host_permissions": ["https://api.smodin.io/*"]
+    "host_permissions": ["https://api.smodin.io/*", "file://*/*"]
 
 }

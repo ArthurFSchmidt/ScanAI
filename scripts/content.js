@@ -30,7 +30,8 @@ function criaPopup() {
   // Criação da div verdadeira que estará visível na página.
   div = document.createElement("div");
   div.classList.add("scanAI-popup-div");
-  div.style = "width:300px; min-height:150px; background-color: #f7f7ff; border: 1px solid #688bff; position:fixed; z-index: 100000; right: 10px; top: 10px; overflow: scroll; max-height: 90vh;";
+  div.style = "width:300px; min-height:150px; background-color: #f7f7ff; border: 1px solid #688bff; position:fixed; z-index: 100000; right: 10px; top: 10px; overflow: scroll; max-height: 90vh;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;";
+  //div.style += "";
 
   let h1 = document.createElement("h1");
   h1.style = "text-align: center;";

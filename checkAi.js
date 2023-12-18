@@ -43,6 +43,7 @@ async function aiChecker(clickData) {
       const response = await chrome.tabs.sendMessage(tab.id, { greeting: "scanResult", text: clickData.selectionText, result: resp.aiGeneratedProbability });
       console.log(response);
     })();
+    
 });
 
 }
